@@ -1,0 +1,72 @@
+<div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Sign up</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <input formControlName = "username" type="text" name="username" placeholder="Username" [ngClass]="{ 'is-invalid': submitted && registrationForm.controls.username.errors }" required />
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+                <div *ngIf="f.username.errors.minlength">Username must be at least 6 characters</div>
+              </div>
+            </div>
+
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <input formControlName = "email" type="email" name="email" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email is not valid</div>
+              </div>
+            </div>
+
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+              <input formControlName = "password" type="password" name="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+            </div>
+
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+              <input formControlName = "retypePassword" type="password" name="password" placeholder="Re-type Password" [ngClass]="{ 'is-invalid': submitted && f.retypePassword.errors }" required />
+              <div *ngIf="submitted && f.retypePassword.errors" class="invalid-feedback">
+                <div *ngIf="f.retypePassword.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.retypePassword.errors.mustMatch">Passwords must match</div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col_half">
+                <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input formControlName = "firstName" type="text" name="name" placeholder="First Name" />
+                </div>
+              </div>
+
+              <div class="col_half">
+                <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input formControlName = "lastName" type="text" name="name" placeholder="Last Name" />
+                </div>
+              </div>
+
+            </div>
+              <div class="input_field checkbox_option">
+                  <input formControlName = "acceptTerms" type="checkbox" id="cb1" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }">
+                  <label for="cb1">I agree with terms and conditions</label>
+                  <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Terms & Conditions is required</div>
+              </div>
+              
+              <div class="input_field checkbox_option">
+                  <input formControlName = "newsletter" type="checkbox" id="cb2">
+                  <label for="cb2">I want to receive the newsletter</label>
+              </div>
+            <input  class="button" type="submit" value="Register" />            
+            <p>form value: {{ registrationForm.value.firstName }}</p>
+            <p>form status: {{ registrationForm.status }}</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
